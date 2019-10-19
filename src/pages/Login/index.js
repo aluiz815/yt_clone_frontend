@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, FormLogin, LoginButton } from "./styles";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 export default function Login() {
   return (
@@ -12,7 +13,9 @@ export default function Login() {
           <input type="email" required placeholder="E-mail" />
           <input type="password" required placeholder="Senha" />
           <LoginButton>
-            <button type="button">Cadastrar</button>
+            <Link to="/register">
+              <button type="button">Cadastrar</button>
+            </Link>
             <span>ou</span>
             <button className="Login" type="button">
               Logar

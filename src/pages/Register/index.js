@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MdAddAPhoto } from "react-icons/md";
 import { Container, FormRegister, RegisterButton, Icon } from "./styles";
 import Header from "../../components/Header";
@@ -20,9 +21,10 @@ export default function Register() {
               <MdAddAPhoto />
             </Icon>
           </label>
-
           <RegisterButton>
-            <button type="button">Cancelar</button>
+            <Link to="/login">
+              <button type="button">Cancelar</button>
+            </Link>
             <span>ou</span>
             <button className="Login" type="button">
               Cadastrar
