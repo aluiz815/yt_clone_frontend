@@ -17,7 +17,8 @@ body,input,button{
   font-size:14 Roboto,sans-serif;
 }
 #root{
-  min-height: 100%;
+  max-height:1080px;
+  min-height: 450px;
   min-width:450px;
   max-width:1920px;
   margin:0 auto;

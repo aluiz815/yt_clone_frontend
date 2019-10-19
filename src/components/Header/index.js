@@ -22,7 +22,7 @@ export default class Header extends Component {
               </Link>
             </Searchbar>
             <Login>
-              <Link to="/">
+              <Link to="/login">
                 <button type="button">LOGIN</button>
               </Link>
             </Login>
@@ -41,8 +41,8 @@ export default class Header extends Component {
               </Link>
             </Searchbar>
             <Avatar>
-              <Link to="/">
-                <img src={this.props.avatar} alt="" />
+              <Link to="/manager">
+                <img src={this.props.avatar} alt="avatar" />
               </Link>
             </Avatar>
           </Container>

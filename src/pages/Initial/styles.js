@@ -4,14 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    to right top,
-    #000000,
-    #050203,
-    #080408,
-    #0a070e,
-    #0a0a12
-  );
+  background-color: rgba(0, 0, 0, 0.8);
   margin: 50px;
 `;
 export const Videos = styled.ul`
