@@ -9,7 +9,7 @@ export default createGlobalStyle`
   box-sizing:border-box;
 }
 body{
-  background:#191920 url(${background}) no-repeat;
+  background:#191920 url(${background}) no-repeat center top;
   background-size:cover;
   -webkit-font-smoothing:antialiased;
 }
@@ -17,6 +17,8 @@ body,input,button{
   font-size:14 Roboto,sans-serif;
 }
 #root{
+  min-height: 100%;
+  min-width:450px;
   max-width:1920px;
   margin:0 auto;
 }
