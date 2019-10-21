@@ -1,70 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Videos } from "./styles";
-import Teste from "../../assets/Flexbox.png";
 import Header from "../../components/Header";
+import api from "../../services/api";
 export default function Initial() {
+  const [videos, setVideos] = useState([]);
+  useEffect(() => {
+    async function getVideo() {
+      const response = await api.get("videos");
+      setVideos(response.data.video.data);
+    }
+    getVideo();
+  }, []);
   return (
     <>
       <Header notLogged={Initial} />
       <Container>
         <Videos>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img1</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img2</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img3</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img4</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img1</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img2</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img3</span>
-            <strong>Autor</strong>
-          </li>
-          <li>
-            <Link to="#">
-              <img src={Teste} alt="" />
-            </Link>
-            <span>Img4</span>
-            <strong>Autor</strong>
-          </li>
+          {videos.map(video => (
+            <li key={video.id}>
+              <Link to={`videos/${video.id}`}>
+                <img src={video.thumb_url} alt="thumb_video" />
+              </Link>
+              <span>{video.description}</span>
+              <strong>{video.user.name}</strong>
+            </li>
+          ))}
         </Videos>
       </Container>
     </>

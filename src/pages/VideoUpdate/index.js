@@ -12,18 +12,15 @@ import {
   VideoIcon
 } from "./styles";
 import Header from "../../components/Header";
-export default function Upload({ history }) {
+export default function Upload({ history, match }) {
   const [avatar, setAvatar] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
-  const [video, setVideo] = useState(null);
+  const id = match.params.id;
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
-  const previewVideo = useMemo(() => {
-    return video ? URL.createObjectURL(video) : null;
-  }, [video]);
   useEffect(() => {
     async function getUser() {
       const token = localStorage.getItem("userToken");
@@ -32,6 +29,12 @@ export default function Upload({ history }) {
       setAvatar(data.url);
     }
     getUser();
+    async function getVideo() {
+      const response = await api.get(`videos/getvideo/${id}`);
+      setTitle(response.data.video.title);
+      setDescription(response.data.video.title);
+    }
+    getVideo();
   }, []);
   async function handleSubmit(e) {
     try {
@@ -41,13 +44,12 @@ export default function Upload({ history }) {
       data.append("title", title);
       data.append("description", description);
       data.append("thumb", thumbnail);
-      data.append("video", video);
-      await api.post("videos/new", data, {
+      await api.put(`videos/getvideo/${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      toast.success("Video Enviado Com Sucesso");
+      toast.success("Video Atualizado Com Sucesso");
       history.push("/manager");
     } catch (error) {
       toast.error("Algo esta errado com os dados, por favor verifique");
@@ -59,16 +61,18 @@ export default function Upload({ history }) {
       <Header avatar={avatar} />
       <Container>
         <FormRegister onSubmit={handleSubmit}>
-          <h1>UPLOAD</h1>
+          <h1>UPDATE</h1>
           <input
             type="text"
             required
             placeholder="Titulo"
             onChange={e => setTitle(e.target.value)}
+            value={title}
           />
           <input
             type="text"
             placeholder="Descricao"
+            value={description}
             onChange={e => setDescription(e.target.value)}
           />
           <span>Thumbnail Do Video</span>
@@ -80,28 +84,11 @@ export default function Upload({ history }) {
             <input
               type="file"
               className="file"
-              required
               onChange={e => setThumbnail(e.target.files[0])}
             />
             <Icon>
               <MdAddAPhoto />
             </Icon>
-          </label>
-          <span> VIDEO</span>
-          <label
-            id="thumbnail"
-            className={video ? "has-thumbnail" : ""}
-            style={{ backgroundImage: `url(${previewVideo})` }}
-          >
-            <input
-              type="file"
-              className="videoFile"
-              required
-              onChange={e => setVideo(e.target.files[0])}
-            />
-            <VideoIcon>
-              <MdVideocam />
-            </VideoIcon>
           </label>
           <RegisterButton>
             <Link to="/dashboard">
@@ -109,7 +96,7 @@ export default function Upload({ history }) {
             </Link>
             <span>ou</span>
             <button className="Login" type="submit">
-              Enviar
+              Alterar
             </button>
           </RegisterButton>
         </FormRegister>

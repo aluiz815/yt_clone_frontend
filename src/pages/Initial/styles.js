@@ -18,7 +18,7 @@ export const Videos = styled.ul`
     display: flex;
     flex-direction: column;
     img {
-      max-width: 100%;
+      max-width: 80%;
       border: 1px solid rgb(251, 209, 147);
       align-self: center;
     }

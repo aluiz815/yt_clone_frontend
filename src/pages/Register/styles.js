@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 270px auto;
+  margin: 100px auto;
   width: 50%;
   height: 50%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -44,6 +44,12 @@ export const FormRegister = styled.form`
     height: 70px;
     justify-content: center;
     align-items: center;
+  }
+  label#thumbnail.has-thumbnail {
+    border: 0;
+  }
+  label#thumbnail.has-thumbnail svg {
+    display: none;
   }
   input.file {
     display: none;

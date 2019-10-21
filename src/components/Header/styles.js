@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdSearch } from "react-icons/md";
+import { MdSearch, MdCloudUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 export const Container = styled.header`
   display: flex;
@@ -63,5 +63,27 @@ export const Avatar = styled(Link)`
     border-radius: 50%;
     padding: 2px;
     background-size: cover;
+    margin-right: 5px;
+  }
+  button {
+    font-weight: bold;
+    background-color: red;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-self: center;
+    margin-left: 10px;
+    color: #fff;
+  }
+`;
+export const IconUp = styled(Link)`
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 150px;
+  a {
+    color: rgb(251, 209, 147);
   }
 `;
