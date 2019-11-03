@@ -1,4 +1,32 @@
 import styled from "styled-components";
+import { darken } from "polished";
+export const Styles = styled.div`
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    .jumbotron {
+      max-width: 960px;
+      padding: 15px;
+      background-color: rgb(0, 0, 0, 0.4);
+      .embed-responsive {
+        video {
+          border: 1px solid rgb(251, 201, 147);
+        }
+      }
+      button {
+        background-color: rgb(0, 0, 0, 0.4);
+        color: rgb(251, 201, 147);
+        border: 0;
+        &:hover {
+          background-color: ${darken(0.09, "#FBC993")};
+          color: #fff;
+        }
+      }
+    }
+  }
+`;
 export const Body = styled.div`
   display: flex;
   justify-content: center;

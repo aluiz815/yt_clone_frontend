@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-import jwt from "jwt-decode";
-import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 import { Container, Videos, Body } from "./styles";
 
 export default function Video({ match }) {
@@ -16,6 +15,16 @@ export default function Video({ match }) {
       const response = await api.get(`search?${page}&${videoParams}`);
       setVideo(response.data.videos.data);
     }
+    async function avatar_url() {
+      try {
+        const token = localStorage.getItem("userToken");
+        const bearer = token.replace("Bearer", "");
+        const { uid } = jwt_decode(bearer);
+        const response = await api.get(`users/getuser/${uid}`);
+        setAvatar(response.data.url);
+      } catch (error) {}
+    }
+    avatar_url();
     getVideo();
   }, [videoParams, page]);
   return (

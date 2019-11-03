@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { Container, Form, ButtonGroup, Button } from "react-bootstrap";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import jwt from "jwt-decode";
 import { Link } from "react-router-dom";
 import { MdAddAPhoto, MdVideocam } from "react-icons/md";
-import {
-  Container,
-  FormRegister,
-  RegisterButton,
-  Icon,
-  VideoIcon
-} from "./styles";
+import { Icon, VideoIcon, Styles, RegisterButton } from "./styles";
 import Header from "../../components/Header";
 export default function Upload({ history }) {
   const [avatar, setAvatar] = useState("");
@@ -51,69 +46,82 @@ export default function Upload({ history }) {
       history.push("/manager");
     } catch (error) {
       toast.error("Algo esta errado com os dados, por favor verifique");
-      console.error(error);
     }
   }
   return (
-    <>
+    <Styles>
       <Header avatar={avatar} />
       <Container>
-        <FormRegister onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="form-user p-2 mt-2">
           <h1>UPLOAD</h1>
-          <input
-            type="text"
-            required
-            placeholder="Titulo"
-            onChange={e => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Descricao"
-            onChange={e => setDescription(e.target.value)}
-          />
-          <span>Thumbnail Do Video</span>
-          <label
-            id="thumbnail"
-            className={thumbnail ? "has-thumbnail" : ""}
-            style={{ backgroundImage: `url(${preview})` }}
-          >
+          <div className="form-group">
+            <label>Titulo</label>
             <input
-              type="file"
-              className="file"
+              className="form-control"
+              type="text"
               required
-              onChange={e => setThumbnail(e.target.files[0])}
+              placeholder="Titulo"
+              onChange={e => setTitle(e.target.value)}
             />
-            <Icon>
-              <MdAddAPhoto />
-            </Icon>
-          </label>
-          <span> VIDEO</span>
-          <label
-            id="thumbnail"
-            className={video ? "has-thumbnail" : ""}
-            style={{ backgroundImage: `url(${previewVideo})` }}
-          >
+          </div>
+          <div className="form-group">
+            <label>Descricao</label>
             <input
-              type="file"
-              className="videoFile"
-              required
-              onChange={e => setVideo(e.target.files[0])}
+              className="form-control"
+              type="text"
+              placeholder="Descricao"
+              onChange={e => setDescription(e.target.value)}
             />
-            <VideoIcon>
-              <MdVideocam />
-            </VideoIcon>
-          </label>
-          <RegisterButton>
+          </div>
+          <div className="form-group">
+            <span>Thumbnail Do Video</span>
+            <label
+              id="thumbnail"
+              className={thumbnail ? "has-thumbnail" : ""}
+              style={{ backgroundImage: `url(${preview})` }}
+            >
+              <input
+                type="file"
+                className="file"
+                required
+                onChange={e => setThumbnail(e.target.files[0])}
+              />
+              <Icon>
+                <MdAddAPhoto />
+              </Icon>
+            </label>
+          </div>
+          <div className="form-group">
+            <span> VIDEO</span>
+            <label
+              id="thumbnail"
+              className={video ? "has-thumbnail" : ""}
+              style={{ backgroundImage: `url(${previewVideo})` }}
+            >
+              <input
+                type="file"
+                className="videoFile"
+                required
+                onChange={e => setVideo(e.target.files[0])}
+              />
+              <VideoIcon>
+                <MdVideocam />
+              </VideoIcon>
+            </label>
+          </div>
+
+          <div className="d-flex p-2 btn-group ">
             <Link to="/dashboard">
-              <button type="button">Cancelar</button>
+              <Button variant="danger" type="button" className="mr-5">
+                Cancelar
+              </Button>
             </Link>
-            <span>ou</span>
-            <button className="Login" type="submit">
+            <Button variant="success" type="submit">
               Enviar
-            </button>
-          </RegisterButton>
-        </FormRegister>
+            </Button>
+          </div>
+        </Form>
       </Container>
-    </>
+    </Styles>
   );
 }

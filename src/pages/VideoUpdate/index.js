@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { Container, ButtonGroup, Button, Form } from "react-bootstrap";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import jwt from "jwt-decode";
 import { Link } from "react-router-dom";
 import { MdAddAPhoto, MdVideocam } from "react-icons/md";
 import {
-  Container,
   FormRegister,
   RegisterButton,
   Icon,
-  VideoIcon
+  VideoIcon,
+  Styles
 } from "./styles";
 import Header from "../../components/Header";
 export default function Upload({ history, match }) {
@@ -57,50 +58,60 @@ export default function Upload({ history, match }) {
     }
   }
   return (
-    <>
+    <Styles>
       <Header avatar={avatar} />
       <Container>
-        <FormRegister onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="form-user p-2 mt-2">
           <h1>UPDATE</h1>
-          <input
-            type="text"
-            required
-            placeholder="Titulo"
-            onChange={e => setTitle(e.target.value)}
-            value={title}
-          />
-          <input
-            type="text"
-            placeholder="Descricao"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-          <span>Thumbnail Do Video</span>
-          <label
-            id="thumbnail"
-            className={thumbnail ? "has-thumbnail" : ""}
-            style={{ backgroundImage: `url(${preview})` }}
-          >
+          <div className="form-group">
+            <label>Titulo</label>
             <input
-              type="file"
-              className="file"
-              onChange={e => setThumbnail(e.target.files[0])}
+              className="form-control"
+              type="text"
+              required
+              placeholder="Titulo"
+              onChange={e => setTitle(e.target.value)}
+              value={title}
             />
-            <Icon>
-              <MdAddAPhoto />
-            </Icon>
-          </label>
-          <RegisterButton>
-            <Link to="/dashboard">
-              <button type="button">Cancelar</button>
-            </Link>
-            <span>ou</span>
-            <button className="Login" type="submit">
+          </div>
+          <div className="form-group">
+            <label>Descricao</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Descricao"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <span>Thumbnail Do Video</span>
+            <label
+              id="thumbnail"
+              className={thumbnail ? "has-thumbnail" : ""}
+              style={{ backgroundImage: `url(${preview})` }}
+            >
+              <input
+                type="file"
+                className="file"
+                onChange={e => setThumbnail(e.target.files[0])}
+              />
+              <Icon>
+                <MdAddAPhoto />
+              </Icon>
+            </label>
+          </div>
+
+          <ButtonGroup className="p-2 d-flex">
+            <Button href="/" variant="danger" className="mr-5" type="button">
+              Cancelar
+            </Button>
+            <Button variant="success" type="submit">
               Alterar
-            </button>
-          </RegisterButton>
-        </FormRegister>
+            </Button>
+          </ButtonGroup>
+        </Form>
       </Container>
-    </>
+    </Styles>
   );
 }

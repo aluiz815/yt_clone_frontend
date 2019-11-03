@@ -1,89 +1,63 @@
 import styled from "styled-components";
-import { MdSearch, MdCloudUpload } from "react-icons/md";
-import { Link } from "react-router-dom";
-export const Container = styled.header`
-  display: flex;
-  padding: 5px;
-  height: 15%;
-  background-color: rgba(0, 0, 0);
-  h1 {
-    color: rgb(251, 209, 147);
-    font-weight: bold;
+import { darken } from "polished";
+export const Container = styled.div`
+  .navbar {
+    background-color: rgb(0, 0, 0, 0.4);
+    button.navbar-toggler {
+      background-color: rgb(251, 201, 147);
+    }
   }
-`;
-
-export const Searchbar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  input {
-    width: 50%;
-    height: 30px;
-    border: 0;
-    border-radius: 5px 0px 0px 5px;
-    padding: 5px;
+  a.navbar-brand {
+    color: rgb(251, 201, 147);
+    transition: color 0.2s;
+    &:hover {
+      color: ${darken(0.09, "#FBC993")};
+    }
   }
-`;
-export const Icon = styled(MdSearch)`
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  background-color: rgb(251, 209, 147);
-  border: 0;
-  border-radius: 0px 5px 5px 0px;
-  color: black;
-`;
-export const Login = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 50px;
-  border: 0;
-  width: 40px;
-  height: 40px;
-
-  button {
-    background: black;
-    font-size: 20px;
-    border-radius: 5px;
-    padding: 5px;
-    border-color: rgb(251, 209, 147);
-    color: rgb(251, 209, 147);
+  .navbar-nav {
+    a.nav-link {
+      color: "#000";
+      transition: color 0.2s;
+      border: 1px solid rgb(251, 201, 147);
+      margin-right: 5px;
+      background-color: rgb(251, 201, 147);
+      border-radius: 5px;
+      &:hover {
+        color: ${darken(0.09, "#fff")};
+      }
+    }
+    .upload {
+      font-size: 30px;
+      color: white;
+      transition: color 0.2s;
+      &:hover {
+        color: ${darken(0.09, "#FBC993")};
+      }
+    }
   }
-`;
-export const Avatar = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 50px;
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    padding: 2px;
-    background-size: cover;
-    margin-right: 5px;
+  form {
   }
-  button {
-    font-weight: bold;
-    background-color: red;
-    border: 0;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    align-self: center;
-    margin-left: 10px;
-    color: #fff;
+  form.form-inline {
+    input.form-control {
+      border-radius: 5px 0px 0px 5px;
+    }
+    button.btn {
+      border: 0;
+      background-color: rgb(251, 201, 147);
+      border-radius: 0px 5px 5px 0px;
+      svg {
+        font-size: 24px;
+        color: rgb(0, 0, 0);
+        transition: color 0.2s;
+        &:hover {
+          color: ${darken(0.09, "#fff")};
+        }
+      }
+    }
   }
-`;
-export const IconUp = styled(Link)`
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 150px;
-  a {
-    color: rgb(251, 209, 147);
+  .navbar-collapse {
+    img.w-25 {
+      width: 10% !important;
+    }
   }
 `;

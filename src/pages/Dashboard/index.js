@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container, Videos } from "./styles";
+import { Styles } from "./styles";
+import { Row, Col, Media, Container } from "react-bootstrap";
 import Header from "../../components/Header";
 import jwt_decode from "jwt-decode";
 import api from "../../services/api";
@@ -21,6 +22,7 @@ export default function Dashboard() {
             const response = await api.get(`users/getuser/${idparse}`);
             setVideos(response.data.videos);
           }
+
           setVideo();
         });
       } catch (error) {}
@@ -40,20 +42,28 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
+    <Styles>
       <Header avatar={avatar} />
       <Container>
-        <Videos>
+        <Row className="p-3 mt-5">
           {videos.map(video => (
-            <li key={video.id}>
-              <Link to={`videos/${video.id}`}>
-                <img src={video.thumb_url} alt="thumb_video" />
-              </Link>
-              <span>{video.description}</span>
-            </li>
+            <Col Col md={3} xs={4}>
+              <Media>
+                <Link to={`videos/${video.id}`}>
+                  <img
+                    src={video.thumb_url}
+                    alt="thumb_video"
+                    width={150}
+                    height={100}
+                    className="mr-auto"
+                  />
+                </Link>
+                <p>{video.description}</p>
+              </Media>
+            </Col>
           ))}
-        </Videos>
+        </Row>
       </Container>
-    </>
+    </Styles>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Container, FormLogin, LoginButton } from "./styles";
-import { Link } from "react-router-dom";
+import { Container, ButtonGroup, Button, Form } from "react-bootstrap";
+import { Styles } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { signInRequest } from "../../store/modules/auth/actions";
 import Header from "../../components/Header";
@@ -14,37 +14,46 @@ export default function Login() {
     dispatch(signInRequest(email, password));
   }
   return (
-    <>
+    <Styles>
       <Header notLogged={Login} />
       <Container>
-        <FormLogin onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="form-user p-2 mt-2">
           <h1>KAKAKA</h1>
           <p>Efetue o login ou cadastre-se</p>
-          <input
-            type="email"
-            required
-            placeholder="E-mail"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            required
-            placeholder="Senha"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <LoginButton>
-            <Link to="/register">
-              <button type="button">Cadastrar</button>
-            </Link>
-            <span>ou</span>
-            <button className="Login" type="submit">
+          <div className="form-group">
+            <input
+              type="email"
+              required
+              className="form-control"
+              placeholder="E-mail"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              required
+              className="form-control mt-2"
+              placeholder="Senha"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+
+          <ButtonGroup className="p-2 d-flex">
+            <Button
+              variant="primary"
+              href="/register"
+              type="button"
+              className="mr-5"
+            >
+              Registrar
+            </Button>
+            <Button variant="success" type="submit">
               {loading ? "Carregando" : "Logar"}
-            </button>
-          </LoginButton>
-        </FormLogin>
+            </Button>
+          </ButtonGroup>
+        </Form>
       </Container>
-    </>
+    </Styles>
   );
 }

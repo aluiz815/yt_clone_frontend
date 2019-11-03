@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Jumbotron, Container, ResponsiveEmbed, Button } from "react-bootstrap";
 import Header from "../../components/Header";
 import api from "../../services/api";
 import jwt from "jwt-decode";
 import { toast } from "react-toastify";
-import { Container, Videos, Body } from "./styles";
+import { Videos, Body, Styles } from "./styles";
 
 export default function Video({ match }) {
   const [video, setVideo] = useState("");
@@ -44,22 +45,26 @@ export default function Video({ match }) {
     }
   }
   return (
-    <>
+    <Styles>
       {avatar ? <Header avatar={avatar} /> : <Header notLogged={Video} />}
       <Body>
         <Container>
-          <Videos>
-            <li>
-              <video src={video.video_url} autoPlay controls></video>
-              <span>{video.description}</span>
-              <strong>{user.name}</strong>
-              <button type="button" onClick={() => handleSubmit()}>
-                INSCREVER-SE
-              </button>
-            </li>
-          </Videos>
+          <Jumbotron>
+            <div style={{ width: 720, height: "auto" }}>
+              <ResponsiveEmbed aspectRatio="16by9">
+                <video src={video.video_url} autoPlay controls></video>
+              </ResponsiveEmbed>
+            </div>
+            <Button
+              type="button"
+              onClick={() => handleSubmit()}
+              className="w-100 mt-2"
+            >
+              INSCREVER-SE
+            </Button>
+          </Jumbotron>
         </Container>
       </Body>
-    </>
+    </Styles>
   );
 }

@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ListGroup, Image } from "react-bootstrap";
 import { MdModeEdit, MdDelete } from "react-icons/md";
 import api from "../../services/api";
 import jwt from "jwt-decode";
 import { toast } from "react-toastify";
-import { Container, Videos, Icon, IconEdit, IconDelete, Data } from "./styles";
+import {
+  Container,
+  Videos,
+  Icon,
+  IconEdit,
+  IconDelete,
+  Data,
+  Styles
+} from "./styles";
 import Header from "../../components/Header";
 export default function VideoManager() {
   const [videos, setVideos] = useState([]);
@@ -42,34 +51,32 @@ export default function VideoManager() {
     }
   }
   return (
-    <>
+    <Styles>
       <Header avatar={avatar} />
-      <Container>
-        <Videos>
-          <h1>Gerenciador de Uploads</h1>
-          {videos.map(video => (
-            <li>
-              <img src={video.thumb_url} alt="" />
-              <Data>
-                <h2 className="Title">{video.title}</h2>
-                <h2 className="Description">{video.description}</h2>
-              </Data>
-              <Icon>
-                <Link to={`/update/${video.id}`}>
-                  <IconEdit>
-                    <MdModeEdit />
-                  </IconEdit>
-                </Link>
-                <Link onClick={() => destroyVideo(video.id)}>
-                  <IconDelete>
-                    <MdDelete />
-                  </IconDelete>
-                </Link>
-              </Icon>
-            </li>
-          ))}
-        </Videos>
-      </Container>
-    </>
+      <ListGroup>
+        <h1>Gerenciador de Uploads</h1>
+        {videos.map(video => (
+          <ListGroup.Item>
+            <Image src={video.thumb_url} className="w-25" alt="thumbnail" />
+            <div className="data">
+              <p>{video.title}</p>
+              <p>{video.description}</p>
+            </div>
+            <div className="icons w-100">
+              <Link to={`/update/${video.id}`}>
+                <IconEdit>
+                  <MdModeEdit />
+                </IconEdit>
+              </Link>
+              <Link onClick={() => destroyVideo(video.id)}>
+                <IconDelete>
+                  <MdDelete />
+                </IconDelete>
+              </Link>
+            </div>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    </Styles>
   );
 }

@@ -8,6 +8,7 @@ import Routes from "./routes/index";
 import GlobalStyle from "./global/global";
 import { store, persistor } from "./store";
 import history from "./routes/history";
+
 function App() {
   return (
     <>

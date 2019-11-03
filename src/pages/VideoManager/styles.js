@@ -1,39 +1,43 @@
 import styled from "styled-components";
 import { MdModeEdit, MdDelete } from "react-icons/md";
-export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 30px;
-`;
-export const Videos = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 30px;
-  background-color: rgba(0, 0, 0, 0.8);
-  flex-direction: column;
-  align-items: space-between;
-  h1 {
-    text-align: center;
-    color: #fff;
+export const Styles = styled.div`
+  .list-group {
+    h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
   }
-  li {
+  .list-group-item {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    padding: 5px;
+    background-color: rgb(0, 0, 0, 0.4);
     img {
-      border: 1px solid rgb(251, 209, 147);
-      width: 100px;
-      margin-right: 15px;
+      border: 1px solid rgb(251, 201, 147);
+    }
+    .data {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      p {
+        color: #fff;
+      }
+    }
+
+    .icons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      svg {
+        color: #fff;
+        font-size: 30px;
+      }
     }
   }
 `;
-export const Icon = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  flex: 1;
-`;
+
 export const IconEdit = styled(MdModeEdit)`
   font-size: 30px;
   margin-bottom: 20px;
@@ -42,17 +46,4 @@ export const IconEdit = styled(MdModeEdit)`
 export const IconDelete = styled(MdDelete)`
   font-size: 30px;
   color: #fff;
-`;
-export const Data = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-  h2.Title {
-    margin-bottom: 10px;
-    color: rgb(251, 209, 147);
-  }
-  h2.Description {
-    color: rgb(255, 255, 255);
-  }
 `;
