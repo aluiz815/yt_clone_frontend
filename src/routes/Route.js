@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { store } from "../store";
+//Redirecionamento se o usuario nao estiver logado
 export default function RouteRedirect({
   component: Component,
   isPrivate = false,

@@ -1,3 +1,4 @@
+//Importacoes necessarias para o funcionamento do app
 import React from "react";
 import { Switch } from "react-router-dom";
 import Route from "./Route";
@@ -11,6 +12,7 @@ import Video from "../pages/Video";
 import Header from "../components/Header";
 import Search from "../pages/Search";
 import VideoUpdate from "../pages/VideoUpdate";
+//Rotas da aplicacao
 export default function routes() {
   return (
     <Switch>

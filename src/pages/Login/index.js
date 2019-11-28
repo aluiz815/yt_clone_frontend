@@ -18,7 +18,7 @@ export default function Login() {
       <Header notLogged={Login} />
       <Container>
         <Form onSubmit={handleSubmit} className="form-user p-2 mt-2">
-          <h1>KAKAKA</h1>
+          <h1>YOUSMILE</h1>
           <p>Efetue o login ou cadastre-se</p>
           <div className="form-group">
             <input

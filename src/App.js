@@ -1,3 +1,4 @@
+//Importacoes necessarias para o funcionamento do app
 import React from "react";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
@@ -9,6 +10,7 @@ import GlobalStyle from "./global/global";
 import { store, persistor } from "./store";
 import history from "./routes/history";
 
+//Metodo main do app
 function App() {
   return (
     <>
